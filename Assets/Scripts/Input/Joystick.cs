@@ -3,25 +3,12 @@
 [CreateAssetMenu(menuName = "Common/Input")]
 public class Joystick : ScriptableObject {
 
-    [Header("Axis")]
-    [SerializeField] string horizontal;
-    [SerializeField] string vertical;
-
-    [Header("Buttons")]
-    [SerializeField] string aButton;
-    [SerializeField] string bButton;
-    [SerializeField] string xButton;
-    [SerializeField] string yButton;
-
-    [SerializeField] string startButton;
-
-
-    public string AButton { get { return aButton; } }
-    public string BButton { get { return bButton; } }
-    public string XButton { get { return xButton; } }
-    public string YButton { get { return yButton; } }
-    public string StartButton { get { return startButton; } }
-    public string Horizontal { get { return horizontal; } }
-    public string Vertical { get { return vertical; } }
+    public string AButton { get { return name + " A"; } }
+    public string BButton { get { return name + " B"; } }
+    public string XButton { get { return name + " X"; } }
+    public string YButton { get { return name + " Y"; } }
+    public string StartButton { get { return name + " Start"; } }
+    public string Horizontal { get { return name + " Horizontal"; } }
+    public string Vertical { get { return name + " Vertical"; } }
 
 }
