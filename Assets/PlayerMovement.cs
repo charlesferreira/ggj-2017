@@ -23,15 +23,15 @@ public class PlayerMovement : MonoBehaviour {
             Move(Vector2.left, "Left");
         else if (input.Right)
             Move(Vector2.right, "Right");
-        else
-            Move(Vector2.zero, "Idle");
+        //else Move(Vector2.zero, "Idle");
 
         // pulo
         if (input.Jump) Jump();
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
-        jumping = false;
+    void OnCollisionEnter(Collision other) {
+        if (other.transform.CompareTag("Island"))
+            jumping = false;
     }
 
     private void Jump() {
