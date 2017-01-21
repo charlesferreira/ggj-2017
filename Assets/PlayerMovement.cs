@@ -7,12 +7,12 @@ public class PlayerMovement : MonoBehaviour {
     public float jumpSpeed;
 
     Animator anim;
-    Rigidbody2D rb;
+    Rigidbody rb;
     PlayerInput input;
     bool jumping = false;
 
     void Start () {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         input = GetComponent<PlayerInput>();
 	}
