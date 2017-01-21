@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayersManager : MonoBehaviour {
 
-    public List<PlayerData> players;
+    public List<PlayerData> players = new List<PlayerData>();
 
     public List<PlayerData> Players { get { return players; } }
     
@@ -17,17 +17,16 @@ public class PlayersManager : MonoBehaviour {
     }
 
     void Awake() {
-        if (players == null)
-            players = new List<PlayerData>();
+        DontDestroyOnLoad(transform.gameObject);
     }
 
-	public void SetPlayers(List<CharacterData> charactersData, List<Joystick> joysticks) {
-        players.Clear();
+    public void SetPlayers(List<CharacterData> charactersData, List<Joystick> joysticks) {
+        Players.Clear();
         for (int i = 0; i < charactersData.Count; i++) {
             var playerData = ScriptableObject.CreateInstance<PlayerData>();
             playerData.character = charactersData[i];
             playerData.joystick = joysticks[i];
-            players.Add(playerData);
+            Players.Add(playerData);
         }
     }
 }
