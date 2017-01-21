@@ -1,18 +1,20 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
     public float moveSpeed;
+    public float maxMoveSpeed;
     public float jumpSpeed;
+    [Range(0, 1)]
+    public float jumpMoveAttenuation;
 
     Animator anim;
-    Rigidbody rb;
+    Rigidbody2D rb;
     PlayerInput input;
     bool jumping = false;
 
     void Start () {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         input = GetComponent<PlayerInput>();
 	}
@@ -29,9 +31,26 @@ public class PlayerMovement : MonoBehaviour {
         if (input.Jump) Jump();
     }
 
-    void OnCollisionEnter(Collision other) {
+    void LateUpdate() {
+        if (Mathf.Abs(rb.velocity.x) > maxMoveSpeed) {
+            var velocity = rb.velocity;
+            velocity.x = Mathf.Clamp(velocity.x, -maxMoveSpeed, maxMoveSpeed);
+            rb.velocity = velocity;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
         if (other.transform.CompareTag("Island"))
             jumping = false;
+    }
+
+    void OnTriggerStay2D(Collider2D other) {
+        print("Olha a onda!");
+        if (other.CompareTag("Wave")) {
+            var velocity = rb.velocity;
+            velocity.x = other.GetComponent<WaveMovement>().DragVelocity;
+            rb.velocity = velocity;
+        }
     }
 
     private void Jump() {
@@ -44,9 +63,15 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Move(Vector3 direction, string animationTrigger) {
+        /*
         var velocity = rb.velocity;
         velocity.x = direction.x * moveSpeed;
         rb.velocity = velocity;
+        */
+        var force = direction * moveSpeed * Time.deltaTime;
+        if (jumping)
+            force *= jumpMoveAttenuation;
+        rb.AddForce(force);
         anim.SetTrigger(animationTrigger);
     }
 }
