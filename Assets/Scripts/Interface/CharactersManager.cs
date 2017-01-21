@@ -23,6 +23,7 @@ public class CharactersManager : MonoBehaviour {
     public Sprite startingSprite;
 
     List<Joystick> joysticks = new List<Joystick>();
+    List<Joystick> joysticksSelecteds = new List<Joystick>();
 
     [HideInInspector] public List<CharacterData> selecteds = new List<CharacterData>();
 
@@ -101,6 +102,8 @@ public class CharactersManager : MonoBehaviour {
     public void increasePlayerReady(int index, Joystick joystick)
     {
         selecteds.Add(charactersDatas[index]);
+        joysticksSelecteds.Add(joystick);
+
         playersReady++;
         if (playersReady == playersCount)
         {
@@ -111,6 +114,8 @@ public class CharactersManager : MonoBehaviour {
     public void decreasePlayerReady(int index)
     {
         selecteds.Remove(charactersDatas[index]);
+        joysticksSelecteds.RemoveAt(index);
+
         playersReady--;
     }
 
