@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour {
             Move(Vector2.left, "Left");
         }
         else if (input.Right) {
-            sr.flipX = true;
+            sr.flipX = false;
             Move(Vector2.right, "Right");
         }
         else anim.SetTrigger("Idle");
