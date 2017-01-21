@@ -121,6 +121,7 @@ public class CharactersManager : MonoBehaviour {
 
     void CallNextScene()
     {
+        PlayersManager.Instance.SetPlayers(selecteds, joysticksSelecteds);
         SceneManager.LoadScene(nextSceneIndex);
     }
 }
