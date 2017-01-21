@@ -171,15 +171,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114000014221636350, guid: 400dd1e4611730d40a230aa8164189d9,
-        type: 2}
-      propertyPath: maxMoveSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000014221636350, guid: 400dd1e4611730d40a230aa8164189d9,
-        type: 2}
-      propertyPath: jumpMoveAttenuation
-      value: 0.569
+    - target: {fileID: 1000013111137016, guid: 400dd1e4611730d40a230aa8164189d9, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000013111137016, guid: 400dd1e4611730d40a230aa8164189d9, type: 2}
       propertyPath: m_IsActive

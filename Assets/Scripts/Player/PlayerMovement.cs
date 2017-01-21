@@ -10,21 +10,27 @@ public class PlayerMovement : MonoBehaviour {
 
     Animator anim;
     Rigidbody2D rb;
+    SpriteRenderer sr;
     PlayerInput input;
     bool jumping = false;
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         input = GetComponent<PlayerInput>();
 	}
 
     void Update() {
         // movimento
-        if (input.Left)
+        if (input.Left) {
+            sr.flipX = true;
             Move(Vector2.left, "Left");
-        else if (input.Right)
+        }
+        else if (input.Right) {
+            sr.flipX = true;
             Move(Vector2.right, "Right");
+        }
         else anim.SetTrigger("Idle");
 
         // pulo
