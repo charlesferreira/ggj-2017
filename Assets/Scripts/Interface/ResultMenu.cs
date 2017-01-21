@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
-public class TitleMenu : MonoBehaviour {
+public class ResultMenu : MonoBehaviour {
 
     List<Button> buttons = new List<Button>();
     MenuInput input;
