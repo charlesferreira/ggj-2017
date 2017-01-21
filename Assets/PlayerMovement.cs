@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour {
             Move(Vector2.left, "Left");
         else if (input.Right)
             Move(Vector2.right, "Right");
-        //else Move(Vector2.zero, "Idle");
+        else anim.SetTrigger("Idle");
 
         // pulo
         if (input.Jump) Jump();

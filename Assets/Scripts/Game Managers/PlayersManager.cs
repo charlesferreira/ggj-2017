@@ -21,7 +21,13 @@ public class PlayersManager : MonoBehaviour {
             players = new List<PlayerData>();
     }
 
-	public void SetPlayers(PlayerData[] players) {
-        this.players.AddRange(players);
+	public void SetPlayers(List<CharacterData> charactersData, List<Joystick> joysticks) {
+        players.Clear();
+        for (int i = 0; i < charactersData.Count; i++) {
+            var playerData = ScriptableObject.CreateInstance<PlayerData>();
+            playerData.character = charactersData[i];
+            playerData.joystick = joysticks[i];
+            players.Add(playerData);
+        }
     }
 }
