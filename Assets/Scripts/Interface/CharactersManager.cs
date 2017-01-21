@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 public class CharactersManager : MonoBehaviour {
 
     [Header("Imagens")]
-    public List<Sprite> charactersSprites = new List<Sprite>();
+    public List<CharacterData> charactersDatas = new List<CharacterData>();
     public Sprite pressStartSprite;
     public Sprite confirmSprite;
+    public Sprite forbiddenSprite;
 
     [Header("Canvas")]
     public List<GameObject> playerCanvas = new List<GameObject>();
@@ -17,8 +18,13 @@ public class CharactersManager : MonoBehaviour {
     [Header("Scene")]
     public int nextSceneIndex = 2;
 
-    List<Character> characters = new List<Character>();
+    [Header("Instructions")]
+    public Image instructionsImage;
+    public Sprite startingSprite;
+
     List<Joystick> joysticks = new List<Joystick>();
+
+    [HideInInspector] public List<CharacterData> selecteds = new List<CharacterData>();
 
     int playersCount;
     int playersReady;
@@ -35,10 +41,7 @@ public class CharactersManager : MonoBehaviour {
     }
 
     void Awake () {
-        foreach (var characterSprite in charactersSprites)
-        {
-            characters.Add(new Character(characterSprite));
-        }
+        
         foreach (var joystick in GetComponent<MenuInput>().joysticks)
         {
             joysticks.Add(joystick);
@@ -64,7 +67,7 @@ public class CharactersManager : MonoBehaviour {
                 playerCanvas[0].GetComponent<MenuInput>().enabled = true;
                 playerCanvas[0].GetComponent<MenuInput>().joysticks[0] = joystick;
                 playerCanvas[0].GetComponent<CharacterMenu>().enabled = true;
-                playerCanvas[0].GetComponent<CharacterMenu>().SetFirstCharacter();
+                playerCanvas[0].GetComponent<CharacterMenu>().JoinCharacter();
                 playerCanvas.RemoveAt(0);
                 removeJoysticks.Add(joystick);
                 increasePlayerCount();
@@ -76,9 +79,9 @@ public class CharactersManager : MonoBehaviour {
         }
     }
 
-    public Sprite GetCharacterSpriteByIndex(int index)
+    public CharacterData GetCharacterDataByIndex(int index)
     {
-        return charactersSprites[index];
+        return charactersDatas[index];
     }
     public void ReturningPlayer(Joystick joystick, GameObject canvas)
     {
@@ -95,16 +98,19 @@ public class CharactersManager : MonoBehaviour {
     {
         playersCount--;
     }
-    public void increasePlayerReady()
+    public void increasePlayerReady(int index, Joystick joystick)
     {
+        selecteds.Add(charactersDatas[index]);
         playersReady++;
         if (playersReady == playersCount)
         {
+            instructionsImage.sprite = startingSprite;
             Invoke("CallNextScene", 1);
         }
     }
-    public void decreasePlayerReady()
+    public void decreasePlayerReady(int index)
     {
+        selecteds.Remove(charactersDatas[index]);
         playersReady--;
     }
 
