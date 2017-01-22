@@ -11,12 +11,14 @@ public class ShowResult : MonoBehaviour {
 
         foreach (Transform item in transform)
         {
-            item.gameObject.SetActive(false);
+            children.Add(item);
         }
         int index = 0;
         int playersCount = ResultManager.Instance.players.Count;
         foreach (var position in GetComponentsInChildren<RankingPosition>())
         {
+            print("filho");
+
             if (index >= playersCount) break;
             children[0].gameObject.SetActive(true);
             position.ShowCharacter(ResultManager.Instance.players[index].avatar);

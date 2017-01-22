@@ -20,10 +20,14 @@ public class ResultManager : MonoBehaviour {
         }
     }
 
+    private void Awake()
+    {
+        menuInput = GetComponent<MenuInput>();
+    }
+
     private void Start()
     {
-        PlayMusic.Instance.PlayIntroMusic();
-        menuInput = GetComponent<MenuInput>();
+        //PlayMusic.Instance.PlayIntroMusic();
         menuPanel.SetActive(false);
     }
 
