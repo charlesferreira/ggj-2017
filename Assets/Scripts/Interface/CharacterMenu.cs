@@ -35,20 +35,27 @@ public class CharacterMenu : MonoBehaviour {
 
     void Update()
     {
+        if (CharactersManager.Instance.starting)
+        {
+            enabled = false;
+            return;
+        }
         var characterData = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter);
 
         forbidden = CheckCharacterForbidden(characterData);
         forbiddenImage.enabled = forbidden;
 
-        if (input.Right && !ready)
+        if (input.Right && joined && !ready)
         {
             currentIndexCharacter = (currentIndexCharacter + 1) % charactersCount;
             characterImage.sprite = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter).avatar;
+            characterImage.SetNativeSize();
         }
-        else if (input.Left && !ready)
+        else if (input.Left && joined && !ready)
         {
             currentIndexCharacter = (charactersCount + currentIndexCharacter - 1) % charactersCount;
             characterImage.sprite = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter).avatar;
+            characterImage.SetNativeSize();
         }
 
         if (input.Cancel)
@@ -59,16 +66,14 @@ public class CharacterMenu : MonoBehaviour {
                 ready = false;
                 CharactersManager.Instance.decreasePlayerReady(currentIndexCharacter);
             }
-            else
+            else if (joined)
             {
                 characterImage.sprite = CharactersManager.Instance.pressStartSprite;
                 CharactersManager.Instance.ReturningPlayer(input.joysticks[0], gameObject);
-                input.enabled = false;
-                enabled = false;
                 joined = false;
             }
         }
-        else if (input.Confirm && !forbidden && !ready)
+        else if (input.Confirm && joined && !forbidden && !ready)
         {
             confirmImage.enabled = true;
             ready = true;

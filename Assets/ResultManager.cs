@@ -16,4 +16,9 @@ public class ResultManager : MonoBehaviour {
             return instance;
         }
     }
+
+    private void Start()
+    {
+        PlayMusic.Instance.PlayIntroMusic();
+    }
 }
