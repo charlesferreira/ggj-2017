@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour {
     [Range(0, 1)]
     public float idleDrag;
 
+    AudioSource jumpSound;
+
     Animator anim;
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -32,6 +34,7 @@ public class PlayerMovement : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         input = GetComponent<PlayerInput>();
+        jumpSound = GetComponent<AudioSource>();
 	}
 
     void Update() {
@@ -107,6 +110,9 @@ public class PlayerMovement : MonoBehaviour {
             velocity.y *= 2;
         }
         rb.velocity = velocity;
+
+        jumpSound.Play();
+
         jumping = true;
     }
 
