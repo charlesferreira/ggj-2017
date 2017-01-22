@@ -17,7 +17,7 @@ public class PlayersManager : MonoBehaviour {
     }
 
     void Awake() {
-        DontDestroyOnLoad(transform.gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     public void SetPlayers(List<CharacterData> charactersData, List<Joystick> joysticks) {

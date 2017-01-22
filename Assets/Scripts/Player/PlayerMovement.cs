@@ -25,11 +25,11 @@ public class PlayerMovement : MonoBehaviour {
         // movimento
         if (input.Left) {
             sr.flipX = true;
-            Move(Vector2.left, "Left");
+            Move(Vector2.left);
         }
         else if (input.Right) {
             sr.flipX = false;
-            Move(Vector2.right, "Right");
+            Move(Vector2.right);
         }
         else anim.SetTrigger("Idle");
 
@@ -45,22 +45,25 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other) {
-        if (other.transform.CompareTag("Island"))
-            jumping = false;
+    void OnTriggerEnter2D(Collider2D other) {
+        var powerUp = other.GetComponent<PowerUp>();
+        if (powerUp != null) {
+            jumpSpeed += powerUp.jumpIncrease;
+            Destroy(powerUp.gameObject);
+        }
     }
 
-    void OnTriggerStay2D(Collider2D other) {
-        print("Olha a onda!");
-        if (other.CompareTag("Wave")) {
-            var velocity = rb.velocity;
-            velocity.x = other.GetComponent<WaveMovement>().DragVelocity;
-            rb.velocity = velocity;
+    void OnCollisionEnter2D(Collision2D other) {
+        if (jumping && other.transform.CompareTag("Island")) {
+            anim.SetTrigger("Landed");
+            jumping = false;
         }
     }
 
     private void Jump() {
         if (jumping) return;
+
+        anim.SetTrigger("Jumping");
 
         var velocity = rb.velocity; ;
         velocity.y = jumpSpeed;
@@ -68,16 +71,12 @@ public class PlayerMovement : MonoBehaviour {
         jumping = true;
     }
 
-    private void Move(Vector3 direction, string animationTrigger) {
-        /*
-        var velocity = rb.velocity;
-        velocity.x = direction.x * moveSpeed;
-        rb.velocity = velocity;
-        */
+    private void Move(Vector3 direction) {
         var force = direction * moveSpeed * Time.deltaTime;
         if (jumping)
             force *= jumpMoveAttenuation;
+        else
+            anim.SetTrigger("Running");
         rb.AddForce(force);
-        anim.SetTrigger(animationTrigger);
     }
 }
