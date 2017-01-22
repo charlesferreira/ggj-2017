@@ -20,7 +20,8 @@ public class PlayersManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    public void SetPlayers(List<CharacterData> charactersData, List<Joystick> joysticks) {
+    public void Init(List<CharacterData> charactersData, List<Joystick> joysticks) {
+        ResultManager.Instance.players.Clear();
         Players.Clear();
         for (int i = 0; i < charactersData.Count; i++) {
             var playerData = ScriptableObject.CreateInstance<PlayerData>();

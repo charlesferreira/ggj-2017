@@ -16,7 +16,7 @@ public class PlayerSpawner : MonoBehaviour {
             // adiciona o corpo do player
             var playerData = players[i];
             var bodyPrefab = playerData.character.bodyPrefab;
-            var body = Instantiate(bodyPrefab,
+            Instantiate(bodyPrefab,
                 player.transform.position + bodyPrefab.transform.localPosition,
                 player.transform.rotation,
                 player.transform);
@@ -24,6 +24,7 @@ public class PlayerSpawner : MonoBehaviour {
             // inicializa os componentes
             player.GetComponent<Animator>().runtimeAnimatorController = playerData.character.animationController;
             player.GetComponent<PlayerInput>().Joystick = playerData.joystick;
+            player.GetComponent<PlayerHealth>().Init(playerData.character);
         }
     }
 }

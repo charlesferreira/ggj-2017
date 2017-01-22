@@ -81,7 +81,6 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D other) {
-        print(other.gameObject.tag);
         var isHeadCollision = other.collider.CompareTag("Player Head");
         if (jumping && (other.transform.CompareTag("Island") || isHeadCollision)) {
             anim.SetTrigger("Landed");

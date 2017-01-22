@@ -158,7 +158,7 @@ public class CharactersManager : MonoBehaviour {
     void CallNextScene()
     {
         PlayMusic.Instance.PlayGameMusic();
-        PlayersManager.Instance.SetPlayers(selecteds, joysticksSelecteds);
+        PlayersManager.Instance.Init(selecteds, joysticksSelecteds);
         SceneManager.LoadScene(nextSceneIndex);
     }
 }
