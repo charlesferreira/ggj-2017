@@ -131,6 +131,7 @@ public class CharactersManager : MonoBehaviour {
     void decreasePlayerCount()
     {
         playersCount--;
+        StartGame();
     }
     public void increasePlayerReady(int index, Joystick joystick)
     {
@@ -138,6 +139,11 @@ public class CharactersManager : MonoBehaviour {
         joysticksSelecteds.Add(joystick);
 
         playersReady++;
+        StartGame();
+    }
+
+    private void StartGame()
+    {
         if (playersReady == playersCount)
         {
             starting = true;
@@ -145,6 +151,7 @@ public class CharactersManager : MonoBehaviour {
             Invoke("CallNextScene", 1);
         }
     }
+
     public void decreasePlayerReady(int index)
     {
         if (starting) return;

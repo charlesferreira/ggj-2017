@@ -19,7 +19,7 @@ public class ShowResult : MonoBehaviour {
         {
             if (index >= playersCount) break;
             children[0].gameObject.SetActive(true);
-            position.ShowCharacter(ResultManager.Instance.players[index].avatarResult);
+            position.ShowCharacter(ResultManager.Instance.players[playersCount - 1 - index].avatarResult);
             index++;
         }
         ResultManager.Instance.players.Clear();
