@@ -13,5 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationController: {fileID: 22100000, guid: cf8e120e330eee643b8332fbc144074f,
     type: 2}
-  avatar: {fileID: 21300000, guid: d9213c15d41674b4daa55c99e9aa4898, type: 3}
+  avatar: {fileID: 21300000, guid: 1eeb654de9c0a744a82349f16dd74fb7, type: 3}
+  avatarResult: {fileID: 21300000, guid: 90ae04ad67d1749428a3cadb76f5fc6f, type: 3}
   bodyPrefab: {fileID: 1000011222806268, guid: 594a59feb5c509c4d896ccaa017c1db3, type: 2}

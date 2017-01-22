@@ -898,7 +898,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd80bdcadcf8c834eafda06919f3d805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
+  players:
+  - {fileID: 11400000, guid: e423cdf486d9a7345b555e360812bd9b, type: 2}
+  - {fileID: 11400000, guid: 5957e8674c1e18a449aaabd30a17fc1f, type: 2}
   menuPanel: {fileID: 322791317}
 --- !u!4 &1420447892
 Transform:
