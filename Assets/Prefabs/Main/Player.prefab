@@ -75,7 +75,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cb718503c6c9a954e812e6fe936a9d5f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -208,7 +208,6 @@ MonoBehaviour:
   runningDrag: 0.05
   jumpingDrag: 0.015
   idleDrag: 0.25
-  jumpSound: {fileID: 0}
 --- !u!212 &212000011462932052
 SpriteRenderer:
   m_ObjectHideFlags: 1
