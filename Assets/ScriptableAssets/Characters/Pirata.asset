@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animationController: {fileID: 22100000, guid: 5b9c3f12924c0ee4d84a60310db45c5e,
     type: 2}
-  avatar: {fileID: 21300000, guid: 34d8d13130653194ebeea4cb10100850, type: 3}
+  avatar: {fileID: 21300000, guid: d17b7fdfa6c4f944795565273ae2ebd1, type: 3}
