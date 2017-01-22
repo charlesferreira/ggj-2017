@@ -13,8 +13,15 @@ public class PlayerSpawner : MonoBehaviour {
             var spawnPoint = spawnPoints[i];
             var player = (GameObject)Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
 
-            // inicializa os componentes
+            // adiciona o corpo do player
             var playerData = players[i];
+            var bodyPrefab = playerData.character.bodyPrefab;
+            var body = Instantiate(bodyPrefab,
+                player.transform.position + bodyPrefab.transform.localPosition,
+                player.transform.rotation,
+                player.transform);
+
+            // inicializa os componentes
             player.GetComponent<Animator>().runtimeAnimatorController = playerData.character.animationController;
             player.GetComponent<PlayerInput>().Joystick = playerData.joystick;
         }

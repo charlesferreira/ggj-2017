@@ -7,6 +7,8 @@ TagManager:
   - Wave
   - Island
   - Coconut
+  - Player Head
+  - Player Feet
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - Players
   - Wave
   - Coconut
-  - 
-  - 
+  - Player Feet
+  - Player Head
   - 
   - 
   - 

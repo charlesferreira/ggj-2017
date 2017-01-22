@@ -2,17 +2,30 @@
 
 public class PlayerMovement : MonoBehaviour {
 
-    public float moveSpeed;
+    [Header("Running")]
+    public float moveForce;
     public float maxMoveSpeed;
+
+    [Header("Jumping")]
     public float jumpSpeed;
     [Range(0, 1)]
     public float jumpMoveAttenuation;
+
+    [Header("Dragging")]
+    [Range(0, 1)]
+    public float runningDrag;
+    [Range(0, 1)]
+    public float jumpingDrag;
+    [Range(0, 1)]
+    public float idleDrag;
 
     Animator anim;
     Rigidbody2D rb;
     SpriteRenderer sr;
     PlayerInput input;
     bool jumping = false;
+    bool running = false;
+    bool hasPlayerOnHead = false;
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -23,6 +36,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update() {
         // movimento
+        running = true;
         if (input.Left) {
             sr.flipX = true;
             Move(Vector2.left);
@@ -31,15 +45,28 @@ public class PlayerMovement : MonoBehaviour {
             sr.flipX = false;
             Move(Vector2.right);
         }
-        else anim.SetTrigger("Idle");
+        else {
+            running = false;
+            anim.SetTrigger("Idle");
+        }
 
         // pulo
         if (input.Jump) Jump();
     }
 
     void LateUpdate() {
+        // atrito e arrasto
+        float drag = jumping 
+            ? jumpingDrag 
+            : (running 
+                ? runningDrag
+                : idleDrag);
+        var velocity = rb.velocity;
+        velocity.x *= (1 - drag);
+        rb.velocity = velocity;
+
+        // velocidade máxima
         if (Mathf.Abs(rb.velocity.x) > maxMoveSpeed) {
-            var velocity = rb.velocity;
             velocity.x = Mathf.Clamp(velocity.x, -maxMoveSpeed, maxMoveSpeed);
             rb.velocity = velocity;
         }
@@ -54,10 +81,20 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D other) {
-        if (jumping && other.transform.CompareTag("Island")) {
+        print(other.gameObject.tag);
+        var isHeadCollision = other.collider.CompareTag("Player Head");
+        if (jumping && (other.transform.CompareTag("Island") || isHeadCollision)) {
             anim.SetTrigger("Landed");
             jumping = false;
+            if (isHeadCollision) {
+                other.gameObject.GetComponent<PlayerMovement>().hasPlayerOnHead = true;
+            }
         }
+    }
+
+    void OnCollisionExit2D(Collision2D other) {
+        if (other.collider.CompareTag("Player Feet"))
+            hasPlayerOnHead = false;
     }
 
     private void Jump() {
@@ -65,14 +102,17 @@ public class PlayerMovement : MonoBehaviour {
 
         anim.SetTrigger("Jumping");
 
-        var velocity = rb.velocity; ;
+        var velocity = rb.velocity;
         velocity.y = jumpSpeed;
+        if (hasPlayerOnHead) {
+            velocity.y *= 2;
+        }
         rb.velocity = velocity;
         jumping = true;
     }
 
     private void Move(Vector3 direction) {
-        var force = direction * moveSpeed * Time.deltaTime;
+        var force = direction * moveForce * Time.deltaTime;
         if (jumping)
             force *= jumpMoveAttenuation;
         else

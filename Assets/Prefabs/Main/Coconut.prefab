@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToLive: 20
-  jumpIncrease: 0.095
+  jumpIncrease: 0.25
 --- !u!212 &212000013915705106
 SpriteRenderer:
   m_ObjectHideFlags: 1
