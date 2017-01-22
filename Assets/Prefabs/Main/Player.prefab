@@ -144,9 +144,9 @@ Rigidbody2D:
   m_GameObject: {fileID: 1000013111137016}
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.1
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.55
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 0
@@ -160,7 +160,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1000013695918532}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d4cbbd15d59be0d4bb6a6c28465ff268, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
@@ -174,7 +174,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1000013271725698}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d4cbbd15d59be0d4bb6a6c28465ff268, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
@@ -188,7 +188,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1000010633982898}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d4cbbd15d59be0d4bb6a6c28465ff268, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0.16}
@@ -245,10 +245,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721510dd66c3f6047b6646fafeaba1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1000
-  maxMoveSpeed: 8
+  moveForce: 1650
+  maxMoveSpeed: 7
   jumpSpeed: 6
   jumpMoveAttenuation: 0.569
+  runningDrag: 0.05
+  jumpingDrag: 0.015
+  idleDrag: 0.25
 --- !u!212 &212000011462932052
 SpriteRenderer:
   m_ObjectHideFlags: 1
