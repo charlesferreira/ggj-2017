@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a37a203f23e57ba4ab5b2f4839b5c531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconPrefab: {fileID: 1000010300494296, guid: 45aa748a928fe2a46a87bc59c0398a88, type: 2}
   timeToLive: 20
   jumpIncrease: 0.25
 --- !u!212 &212000013915705106

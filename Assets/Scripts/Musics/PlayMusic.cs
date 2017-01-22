@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlayMusic : MonoBehaviour {
 
@@ -11,14 +10,19 @@ public class PlayMusic : MonoBehaviour {
     {
         get
         {
-            if (instance == null)
+            if (instance == null) {
                 instance = FindObjectOfType<PlayMusic>();
+            }
             return instance;
         }
     }
 
     private void Awake()
     {
+        if (!Instance.introMusic.isPlaying) {
+            Instance.gameMusic.Stop();
+            Instance.introMusic.Play();
+        }
         DontDestroyOnLoad(gameObject);
     }
 

@@ -23,7 +23,7 @@ public class ShowResult : MonoBehaviour {
             index++;
         }
         ResultManager.Instance.players.Clear();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -79,6 +79,9 @@ public class PlayerMovement : MonoBehaviour {
         var powerUp = other.GetComponent<PowerUp>();
         if (powerUp != null) {
             jumpSpeed += powerUp.jumpIncrease;
+            Instantiate(powerUp.iconPrefab,
+                transform.position + powerUp.iconPrefab.transform.position,
+                transform.rotation);
             Destroy(powerUp.gameObject);
         }
     }
