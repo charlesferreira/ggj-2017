@@ -14,12 +14,8 @@ public class PlayerHealth : MonoBehaviour {
     void Update () {
 	    if (transform.position.y < minY) {
             print(characterData);
-            ResultManager.Instance.players.Add(characterData);
-            DestroyImmediate(gameObject);
-
-            if (ResultManager.Instance.players.Count == PlayersManager.Instance.Players.Count) {
-                SceneManager.LoadScene(3);
-            }
+            ResultManager.Instance.Add(characterData);
+            Destroy(gameObject);
         }
 	}
 }
