@@ -45,13 +45,13 @@ public class CharacterMenu : MonoBehaviour {
         forbidden = CheckCharacterForbidden(characterData);
         forbiddenImage.enabled = forbidden;
 
-        if (input.Right && joined && !ready)
+        if (input.Up && joined && !ready)
         {
             currentIndexCharacter = (currentIndexCharacter + 1) % charactersCount;
             characterImage.sprite = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter).avatar;
             characterImage.SetNativeSize();
         }
-        else if (input.Left && joined && !ready)
+        else if (input.Down && joined && !ready)
         {
             currentIndexCharacter = (charactersCount + currentIndexCharacter - 1) % charactersCount;
             characterImage.sprite = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter).avatar;

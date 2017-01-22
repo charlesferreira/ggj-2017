@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 public class ResultManager : MonoBehaviour {
 
-    [HideInInspector] public List<CharacterData> players = new List<CharacterData>();
+    public List<CharacterData> players = new List<CharacterData>();
+    public GameObject menuPanel;
+
+    MenuInput menuInput;
 
     static ResultManager instance;
     public static ResultManager Instance
@@ -20,5 +23,16 @@ public class ResultManager : MonoBehaviour {
     private void Start()
     {
         PlayMusic.Instance.PlayIntroMusic();
+        menuInput = GetComponent<MenuInput>();
+        menuPanel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (menuInput.Confirm)
+        {
+            menuInput.enabled = false;
+            menuPanel.SetActive(true);
+        }
     }
 }

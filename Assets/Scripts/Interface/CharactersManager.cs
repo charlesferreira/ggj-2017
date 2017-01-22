@@ -141,7 +141,7 @@ public class CharactersManager : MonoBehaviour {
         if (playersReady == playersCount)
         {
             starting = true;
-            instructionsImage.sprite = startingSprite;
+            //instructionsImage.sprite = startingSprite;
             Invoke("CallNextScene", 1);
         }
     }
