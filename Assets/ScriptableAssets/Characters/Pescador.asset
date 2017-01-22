@@ -14,5 +14,5 @@ MonoBehaviour:
   animationController: {fileID: 22100000, guid: b7e4f00adaf81c44681e18651964a823,
     type: 2}
   avatar: {fileID: 21300000, guid: 8d2eb612fb375184b91b981c7bf63d5c, type: 3}
-  avatarResult: {fileID: 21300000, guid: 487be8f559729164da210941ac83897e, type: 3}
+  avatarResult: {fileID: 21300000, guid: 46be632badc17574e8b84beed561961e, type: 3}
   bodyPrefab: {fileID: 1000010002535604, guid: 7c302c4e95b61e4458084a2e2cf161e8, type: 2}

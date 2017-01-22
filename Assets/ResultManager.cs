@@ -5,9 +5,6 @@ using System.Collections.Generic;
 public class ResultManager : MonoBehaviour {
 
     public List<CharacterData> players = new List<CharacterData>();
-    public GameObject menuPanel;
-
-    MenuInput menuInput;
 
     static ResultManager instance;
     public static ResultManager Instance
@@ -22,21 +19,6 @@ public class ResultManager : MonoBehaviour {
 
     private void Awake()
     {
-        menuInput = GetComponent<MenuInput>();
-    }
-
-    private void Start()
-    {
-        //PlayMusic.Instance.PlayIntroMusic();
-        menuPanel.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (menuInput.Confirm)
-        {
-            menuInput.enabled = false;
-            menuPanel.SetActive(true);
-        }
+        DontDestroyOnLoad(gameObject);
     }
 }

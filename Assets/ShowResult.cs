@@ -17,13 +17,12 @@ public class ShowResult : MonoBehaviour {
         int playersCount = ResultManager.Instance.players.Count;
         foreach (var position in GetComponentsInChildren<RankingPosition>())
         {
-            print("filho");
-
             if (index >= playersCount) break;
             children[0].gameObject.SetActive(true);
-            position.ShowCharacter(ResultManager.Instance.players[index].avatar);
+            position.ShowCharacter(ResultManager.Instance.players[index].avatarResult);
             index++;
         }
+        ResultManager.Instance.players.Clear();
 	}
 	
 	// Update is called once per frame
