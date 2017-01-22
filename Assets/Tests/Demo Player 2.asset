@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e825988da5c6743ba012b90261a0c1, type: 3}
   m_Name: Demo Player 2
   m_EditorClassIdentifier: 
-  character: {fileID: 11400000, guid: 94669760e2e6e344f8baf0684898ac85, type: 2}
-  joystick: {fileID: 11400000, guid: 1c91e56c28ac26240b57a43cc9853152, type: 2}
+  character: {fileID: 11400000, guid: e423cdf486d9a7345b555e360812bd9b, type: 2}
+  joystick: {fileID: 11400000, guid: 0fe68e965515671448306c0acd25d780, type: 2}

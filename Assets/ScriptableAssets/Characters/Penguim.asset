@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d080568f11beb24cafbf8515b594ef9, type: 3}
   m_Name: Penguim
   m_EditorClassIdentifier: 
-  animationController: {fileID: 22100000, guid: fc6780c030de2c64da0a1bb270c61d0e,
+  animationController: {fileID: 22100000, guid: cf8e120e330eee643b8332fbc144074f,
     type: 2}
   avatar: {fileID: 21300000, guid: d9213c15d41674b4daa55c99e9aa4898, type: 3}
+  bodyPrefab: {fileID: 1000011222806268, guid: 594a59feb5c509c4d896ccaa017c1db3, type: 2}

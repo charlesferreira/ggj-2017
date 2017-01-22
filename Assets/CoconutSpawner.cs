@@ -12,8 +12,8 @@ public class CoconutSpawner : MonoBehaviour {
 
     IEnumerator SpawnCoconut() {
         while (true) {
-            Instantiate(coconutPrefab, transform.position, transform.rotation);
             yield return new WaitForSeconds(interval.RandomValue);
+            Instantiate(coconutPrefab, transform.position, transform.rotation);
         }
     }
 }

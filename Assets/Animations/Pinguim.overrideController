@@ -5,14 +5,14 @@ AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Pirata
+  m_Name: Pinguim
   m_Controller: {fileID: 9100000, guid: 686ed91fcf10cc1489212d98d9785360, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: b84b74a402fe5324c990a24ad8b47e9d, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 9076801f1d81e6744806162a73a374a4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e8580f5c3b7736e4c920b6753b839934, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 4f830cc7f12b11945908aa4ad65054cf, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: bcb33a0dad08f294a8016c1a8b55fad1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5a2ab1892cfa56f4d94387bf9aeaf8c9, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 8fc572da5c6d8714bb87ccfa3e6311ba, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: ce2778207e6d56a4fb16fd32dbac98e9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 748a35983e33d3d498dad11402905c7f, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: f6727d58de83c1d4196c9fa5bd036bf8, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: f2329261e3681034980490bc191f3f6a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 382053d93e3a9b449bf467980e9ae123, type: 2}

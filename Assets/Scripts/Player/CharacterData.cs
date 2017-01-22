@@ -5,5 +5,6 @@ public class CharacterData : ScriptableObject {
 
     public AnimatorOverrideController animationController;
     public Sprite avatar;
+    public GameObject bodyPrefab;
 
 }

@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour {
     PlayerInput input;
     bool jumping = false;
     bool running = false;
+    bool hasPlayerOnHead = false;
 
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -80,10 +81,20 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void OnCollisionEnter2D(Collision2D other) {
-        if (jumping && other.transform.CompareTag("Island")) {
+        print(other.gameObject.tag);
+        var isHeadCollision = other.collider.CompareTag("Player Head");
+        if (jumping && (other.transform.CompareTag("Island") || isHeadCollision)) {
             anim.SetTrigger("Landed");
             jumping = false;
+            if (isHeadCollision) {
+                other.gameObject.GetComponent<PlayerMovement>().hasPlayerOnHead = true;
+            }
         }
+    }
+
+    void OnCollisionExit2D(Collision2D other) {
+        if (other.collider.CompareTag("Player Feet"))
+            hasPlayerOnHead = false;
     }
 
     private void Jump() {
@@ -93,6 +104,9 @@ public class PlayerMovement : MonoBehaviour {
 
         var velocity = rb.velocity;
         velocity.y = jumpSpeed;
+        if (hasPlayerOnHead) {
+            velocity.y *= 2;
+        }
         rb.velocity = velocity;
         jumping = true;
     }
