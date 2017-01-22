@@ -27,7 +27,12 @@ public class ResultManager : MonoBehaviour {
     }
 
     IEnumerator EndGame() {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
+        foreach (var player in PlayersManager.Instance.Players) {
+            if (!players.Contains(player.character)) {
+                players.Add(player.character);
+            }
+        }
         gameIsEnding = false;
         SceneManager.LoadScene(3);
     }

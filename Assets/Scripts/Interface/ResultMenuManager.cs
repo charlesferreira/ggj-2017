@@ -6,6 +6,7 @@ public class ResultMenuManager : MonoBehaviour {
     public GameObject menuPanel;
 
     MenuInput menuInput;
+    private bool canShowMenu = false;
 
     private void Awake()
     {
@@ -13,13 +14,18 @@ public class ResultMenuManager : MonoBehaviour {
     }
     private void Start()
     {
-        PlayMusic.Instance.PlayIntroMusic();
+        StartCoroutine(ShowPanel());
         menuPanel.SetActive(false);
+    }
+
+    IEnumerator ShowPanel() {
+        yield return new WaitForSeconds(1f);
+        canShowMenu = true;
     }
 
     private void Update()
     {
-        if (menuInput.Confirm)
+        if (menuInput.Confirm && canShowMenu)
         {
             menuPanel.SetActive(true);
         }
