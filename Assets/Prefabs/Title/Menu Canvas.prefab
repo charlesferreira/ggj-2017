@@ -59,6 +59,8 @@ GameObject:
   - 222: {fileID: 222000013434396768}
   - 114: {fileID: 114000014105829134}
   - 114: {fileID: 114000013769796152}
+  - 114: {fileID: 114000012126679188}
+  - 114: {fileID: 114000011096313752}
   m_Layer: 5
   m_Name: MainMenuPanel
   m_TagString: Untagged
@@ -111,7 +113,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 6b68681c04b6dd74887ac4c1846193e4,
+    m_HighlightedSprite: {fileID: 21300000, guid: dde349b05ae8b75448459e650cd7a3b5,
       type: 3}
     m_PressedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -138,6 +140,36 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114000011096313752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010824680624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8cfc80800a139440a2ad41ccd37eeaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joysticks:
+  - {fileID: 11400000, guid: 67ad802e4e5d929448f5642461c02c21, type: 2}
+  - {fileID: 11400000, guid: 0fe68e965515671448306c0acd25d780, type: 2}
+  - {fileID: 11400000, guid: 1c91e56c28ac26240b57a43cc9853152, type: 2}
+  - {fileID: 11400000, guid: 65933d1a6d627144188ed410fecb785e, type: 2}
+  cursorMovementsPerSecond: 6
+  firstCooldown: 0.5
+  cursorThreshold: 0.65
+--- !u!114 &114000012126679188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010824680624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b0454ee505cf3499c84406a98c598f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000012741256282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -173,7 +205,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6593cb5f8b0a9844e98bfedff2e3bf85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b90edb9cf5518f5478046e481e6a6e24, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -189,7 +221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000012876901752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ae65bcd75a0df1478688f31bbedbaa3, type: 3}
+  m_Script: {fileID: 11500000, guid: b087f38c92d36594cb03133cc8d5018d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114000012824514606
@@ -211,7 +243,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bbbba9d9ea749db45a0e5ff86e31ac21, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 131809846d5e9824b98cd4b33efb1a0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -227,7 +259,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000010756688148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 701083bb6b75e0a42b24806f1e319b58, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bb33935a8ae8764bb203b7df67b3f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114000013034578740
@@ -277,7 +309,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 394ff34ae700cde44a9d5b6332250bc0,
+    m_HighlightedSprite: {fileID: 21300000, guid: f3e5c194d32ce334da41843e8620e04f,
       type: 3}
     m_PressedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -343,7 +375,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8e6c7b5acfef370409e1b0d13e89b0b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c440b6e7487f5844f9cbc43d38224c72, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
