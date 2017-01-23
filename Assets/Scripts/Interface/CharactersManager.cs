@@ -127,10 +127,12 @@ public class CharactersManager : MonoBehaviour {
     void increasePlayerCount()
     {
         playersCount++;
+
     }
     void decreasePlayerCount()
     {
         playersCount--;
+
         StartGame();
     }
     public void increasePlayerReady(int index, Joystick joystick)
@@ -139,6 +141,7 @@ public class CharactersManager : MonoBehaviour {
         joysticksSelecteds.Add(joystick);
 
         playersReady++;
+
         StartGame();
     }
 
@@ -155,9 +158,8 @@ public class CharactersManager : MonoBehaviour {
     public void decreasePlayerReady(int index)
     {
         if (starting) return;
-
+        joysticksSelecteds.RemoveAt(selecteds.IndexOf(charactersDatas[index]));
         selecteds.Remove(charactersDatas[index]);
-        joysticksSelecteds.RemoveAt(index);
 
         playersReady--;
     }

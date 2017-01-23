@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01debdbdaaff4ce4aa6e712e22ec967f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentIndexCharacter: 1
 --- !u!114 &133555842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01debdbdaaff4ce4aa6e712e22ec967f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentIndexCharacter: 0
 --- !u!1 &1041201299
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,6 +995,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01debdbdaaff4ce4aa6e712e22ec967f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentIndexCharacter: 2
 --- !u!114 &1217555526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,10 +1082,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charactersDatas:
-  - {fileID: 11400000, guid: e423cdf486d9a7345b555e360812bd9b, type: 2}
-  - {fileID: 11400000, guid: 73af61809dc8f874bb2d52daa03cf95f, type: 2}
   - {fileID: 11400000, guid: 5957e8674c1e18a449aaabd30a17fc1f, type: 2}
   - {fileID: 11400000, guid: 0835557c1825013468c1e4ba5d6ddc6b, type: 2}
+  - {fileID: 11400000, guid: e423cdf486d9a7345b555e360812bd9b, type: 2}
+  - {fileID: 11400000, guid: 73af61809dc8f874bb2d52daa03cf95f, type: 2}
   pressStartSprite: {fileID: 21300000, guid: 22987e843a1b4b64bb64aeae043e0890, type: 3}
   confirmSprite: {fileID: 21300000, guid: 1a269caa28b15c54c9153dcb3c82ed7e, type: 3}
   forbiddenSprite: {fileID: 21300000, guid: 6c064d34182bc6d4186e39ea3c6b9251, type: 3}
@@ -1348,6 +1351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01debdbdaaff4ce4aa6e712e22ec967f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentIndexCharacter: 3
 --- !u!114 &1539444278
 MonoBehaviour:
   m_ObjectHideFlags: 0

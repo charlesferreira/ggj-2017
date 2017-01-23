@@ -6,7 +6,7 @@ public class CharacterMenu : MonoBehaviour {
 
     MenuInput input;
     int charactersCount;
-    int currentIndexCharacter = 0;
+    public int currentIndexCharacter = 0;
     Image characterImage;
     Image confirmImage;
     Image forbiddenImage;
@@ -41,23 +41,20 @@ public class CharacterMenu : MonoBehaviour {
             forbiddenImage.enabled = false;
             return;
         }
-        var characterData = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter);
-
-        forbidden = CheckCharacterForbidden(characterData);
-        forbiddenImage.enabled = forbidden;
 
         if (input.Up && joined && !ready)
         {
             currentIndexCharacter = (currentIndexCharacter + 1) % charactersCount;
-            characterImage.sprite = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter).avatar;
-            characterImage.SetNativeSize();
+            UpdateCharacterData();
         }
         else if (input.Down && joined && !ready)
         {
             currentIndexCharacter = (charactersCount + currentIndexCharacter - 1) % charactersCount;
-            characterImage.sprite = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter).avatar;
-            characterImage.SetNativeSize();
+            UpdateCharacterData();
         }
+
+        forbidden = CheckCharacterForbidden(characterData);
+        forbiddenImage.enabled = forbidden;
 
         if (input.Cancel)
         {
@@ -79,8 +76,14 @@ public class CharacterMenu : MonoBehaviour {
             confirmImage.enabled = true;
             ready = true;
             CharactersManager.Instance.increasePlayerReady(currentIndexCharacter, input.joysticks[0]);
-            characterData = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter);
         }
+    }
+
+    private void UpdateCharacterData()
+    {
+        characterData = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter);
+        characterImage.sprite = characterData.avatar;
+        characterImage.SetNativeSize();
     }
 
     private bool CheckCharacterForbidden(CharacterData characterData)
@@ -101,6 +104,7 @@ public class CharacterMenu : MonoBehaviour {
     public void JoinCharacter()
     {
         joined = true;
-        characterImage.sprite = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter).avatar;
+        characterData = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter);
+        characterImage.sprite = characterData.avatar;
     }
 }
