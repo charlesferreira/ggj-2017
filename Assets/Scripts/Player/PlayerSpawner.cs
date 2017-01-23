@@ -17,7 +17,7 @@ public class PlayerSpawner : MonoBehaviour {
             var playerData = players[i];
             var bodyPrefab = playerData.character.bodyPrefab;
             Instantiate(bodyPrefab,
-                player.transform.position + bodyPrefab.transform.localPosition,
+                player.transform.position,// + bodyPrefab.transform.localPosition,
                 player.transform.rotation,
                 player.transform);
 
