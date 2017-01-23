@@ -662,9 +662,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a99937026d86de4ebb4e2cd843a055b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
-  phase: 0
-  amplitude: 0
+  speed: 0.07
+  phase: 0.2
+  amplitude: 0.001
 --- !u!23 &883212471
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -835,10 +835,6 @@ Prefab:
     - target: {fileID: 4000013302891804, guid: ed1bfa0e39475ba419d8ff58320df44d, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010340629624, guid: ed1bfa0e39475ba419d8ff58320df44d, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed1bfa0e39475ba419d8ff58320df44d, type: 2}
@@ -1035,8 +1031,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavePrefab: {fileID: 1000010340629624, guid: ed1bfa0e39475ba419d8ff58320df44d, type: 2}
-  startingScale: 0.55
-  scaleIncrementFactor: 0.0425
+  startingScale: 0.8
+  scaleIncrementFactor: 0.05
   interval:
     from: 1.5
     to: 4.25
@@ -1478,8 +1474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players:
-  - {fileID: 11400000, guid: 38ee8690e3f071643b26b1c0ea20444c, type: 2}
-  - {fileID: 11400000, guid: 4d242b382dc15b048ac094e1b1923aea, type: 2}
+  - {fileID: 11400000, guid: 1a49386285b55e749b771ed7c6b4163f, type: 2}
 --- !u!4 &2118293841
 Transform:
   m_ObjectHideFlags: 0

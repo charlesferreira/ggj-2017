@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4e825988da5c6743ba012b90261a0c1, type: 3}
-  m_Name: Demo Player 3
+  m_Name: Demo Player 4
   m_EditorClassIdentifier: 
-  character: {fileID: 11400000, guid: 5957e8674c1e18a449aaabd30a17fc1f, type: 2}
-  joystick: {fileID: 11400000, guid: 1c91e56c28ac26240b57a43cc9853152, type: 2}
+  character: {fileID: 11400000, guid: e423cdf486d9a7345b555e360812bd9b, type: 2}
+  joystick: {fileID: 11400000, guid: 65933d1a6d627144188ed410fecb785e, type: 2}

@@ -14,10 +14,10 @@ public class MiniWaves : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
-        mr.sharedMaterial.mainTextureOffset += Vector2.left * speed * Time.deltaTime;
-        phase += Time.deltaTime;
+        mr.sharedMaterial.mainTextureOffset += Vector2.left * speed * Time.fixedDeltaTime;
+        phase += Time.fixedDeltaTime;
         transform.position += Vector3.up * amplitude * Mathf.Sin(phase);
 	}
 }

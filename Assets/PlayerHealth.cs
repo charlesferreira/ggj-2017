@@ -13,7 +13,6 @@ public class PlayerHealth : MonoBehaviour {
 
     void Update () {
 	    if (transform.position.y < minY) {
-            print(characterData);
             ResultManager.Instance.Add(characterData);
             Destroy(gameObject);
         }
