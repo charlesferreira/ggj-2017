@@ -144,7 +144,7 @@ public class CharactersManager : MonoBehaviour {
 
     private void StartGame()
     {
-        if (playersReady == playersCount)
+        if (playersReady == playersCount && playersReady > 0)
         {
             starting = true;
             //instructionsImage.sprite = startingSprite;
