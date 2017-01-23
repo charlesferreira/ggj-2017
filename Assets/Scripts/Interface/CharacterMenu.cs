@@ -38,6 +38,7 @@ public class CharacterMenu : MonoBehaviour {
         if (CharactersManager.Instance.starting)
         {
             enabled = false;
+            forbiddenImage.enabled = false;
             return;
         }
         var characterData = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter);
