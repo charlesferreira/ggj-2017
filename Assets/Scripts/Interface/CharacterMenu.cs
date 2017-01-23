@@ -42,12 +42,12 @@ public class CharacterMenu : MonoBehaviour {
             return;
         }
 
-        if (input.Up && joined && !ready)
+        if ((input.Up || input.Right) && joined && !ready)
         {
             currentIndexCharacter = (currentIndexCharacter + 1) % charactersCount;
             UpdateCharacterData();
         }
-        else if (input.Down && joined && !ready)
+        else if ((input.Down || input.Left) && joined && !ready)
         {
             currentIndexCharacter = (charactersCount + currentIndexCharacter - 1) % charactersCount;
             UpdateCharacterData();
