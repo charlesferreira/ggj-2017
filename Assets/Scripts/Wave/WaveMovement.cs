@@ -14,8 +14,8 @@ public class WaveMovement : MonoBehaviour {
         speed = speedRange.RandomValue;
     }
 
-    void Update () {
-        var movement = Vector2.right * speed * Time.deltaTime;
+    void FixedUpdate () {
+        var movement = Vector2.right * speed * Time.fixedDeltaTime;
         transform.Translate(movement, Space.World);
 	}
 }
