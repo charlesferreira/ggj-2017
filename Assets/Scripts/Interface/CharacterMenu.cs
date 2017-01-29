@@ -4,16 +4,16 @@ using UnityEngine.UI;
 
 public class CharacterMenu : MonoBehaviour {
 
-    MenuInput input;
-    int charactersCount;
-    public int currentIndexCharacter = 0;
     Image characterImage;
     Image confirmImage;
     Image forbiddenImage;
-    bool joined = false;
-    bool ready = false;
     bool forbidden = false;
-    CharacterData characterData;
+    [HideInInspector] public bool joined = false;
+    [HideInInspector] public bool ready = false;
+    [HideInInspector] public MenuInput input;
+    [HideInInspector] public CharacterData characterData;
+    int charactersCount;
+    public int currentIndexCharacter = 0;
 
     void Awake()
     {
@@ -53,29 +53,40 @@ public class CharacterMenu : MonoBehaviour {
             UpdateCharacterData();
         }
 
-        forbidden = CheckCharacterForbidden(characterData);
-        forbiddenImage.enabled = forbidden;
+        if (!ready && joined)
+        {
+            if (CharactersManager.Instance.IsCharacterSelected(characterData))
+                forbidden = true;
+            else
+                forbidden = false;
 
-        if (input.Cancel)
+            forbiddenImage.enabled = forbidden;
+        }
+
+        if (input.Start && !joined)
+        {
+            UpdateCharacterData();
+            joined = true;
+        }
+        else if (input.Cancel)
         {
             if (ready)
             {
                 confirmImage.enabled = false;
                 ready = false;
-                CharactersManager.Instance.decreasePlayerReady(currentIndexCharacter);
             }
             else if (joined)
             {
                 characterImage.sprite = CharactersManager.Instance.pressStartSprite;
-                CharactersManager.Instance.ReturningPlayer(input.joysticks[0], gameObject);
                 joined = false;
+                CharactersManager.Instance.CheckStartGame();
             }
         }
         else if (input.Confirm && joined && !forbidden && !ready)
         {
             confirmImage.enabled = true;
             ready = true;
-            CharactersManager.Instance.increasePlayerReady(currentIndexCharacter, input.joysticks[0]);
+            CharactersManager.Instance.CheckStartGame();
         }
     }
 
@@ -84,21 +95,6 @@ public class CharacterMenu : MonoBehaviour {
         characterData = CharactersManager.Instance.GetCharacterDataByIndex(currentIndexCharacter);
         characterImage.sprite = characterData.avatar;
         characterImage.SetNativeSize();
-    }
-
-    private bool CheckCharacterForbidden(CharacterData characterData)
-    {
-        if (!ready && joined)
-        {
-            foreach (var selected in CharactersManager.Instance.selecteds)
-            {
-                if (selected == characterData)
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     public void JoinCharacter()

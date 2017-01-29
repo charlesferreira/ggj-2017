@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System;
+using System.Linq;
 
 public class CharactersManager : MonoBehaviour {
 
@@ -13,9 +12,6 @@ public class CharactersManager : MonoBehaviour {
     public Sprite confirmSprite;
     public Sprite forbiddenSprite;
 
-    [Header("Canvas")]
-    public List<GameObject> playerCanvas = new List<GameObject>();
-
     [Header("Scene")]
     public int nextSceneIndex = 2;
     public int prevSceneIndex = 0;
@@ -24,16 +20,15 @@ public class CharactersManager : MonoBehaviour {
     public Image instructionsImage;
     public Sprite startingSprite;
 
-    List<Joystick> joysticks = new List<Joystick>();
+    [Header("Characters Menu")]
+    public List<CharacterMenu> charactersMenu = new List<CharacterMenu>();
+
+    [HideInInspector] public List<CharacterData> charactersSelecteds = new List<CharacterData>();
     List<Joystick> joysticksSelecteds = new List<Joystick>();
 
-    [HideInInspector] public List<CharacterData> selecteds = new List<CharacterData>();
-
-    int playersCount;
     int playersReady;
 
     [HideInInspector] public bool starting = false;
-    bool canExit = true;
 
     MenuInput input;
 
@@ -51,59 +46,23 @@ public class CharactersManager : MonoBehaviour {
     void Awake () {
 
         input = GetComponent<MenuInput>();
-
-        foreach (var joystick in GetComponent<MenuInput>().joysticks)
-        {
-            joysticks.Add(joystick);
-        }
     }
 	
 	void Update ()
     {
-        CheckJoinningPlayer();
-
         if (input.Cancel)
-        {
-            if (playersCount == 0)
-            {
-                if (canExit)
-                {
-                    Exit();
-                }
-                else
-                {
-                    Invoke("AllowExit", .1f);
-                }
-            }
-        }
+            if (!IsAnyPlayer())
+                Exit();
     }
 
-    private void AllowExit()
+    private bool IsAnyPlayer()
     {
-        canExit = true;
-    }
-
-    private void CheckJoinningPlayer()
-    {
-        if (starting) return;
-
-        List<Joystick> removeJoysticks = new List<Joystick>();
-        foreach (var joystick in joysticks)
+        foreach (var characterMenu in charactersMenu)
         {
-            if (Input.GetButtonDown(joystick.StartButton))
-            {
-                playerCanvas[0].GetComponent<MenuInput>().joysticks[0] = joystick;
-                playerCanvas[0].GetComponent<CharacterMenu>().JoinCharacter();
-                playerCanvas.RemoveAt(0);
-                removeJoysticks.Add(joystick);
-                increasePlayerCount();
-                canExit = false;
-            }
+            if (characterMenu.joined)
+                return true;
         }
-        foreach (var joystick in removeJoysticks)
-        {
-            joysticks.Remove(joystick);
-        }
+        return false;
     }
 
     internal void Exit()
@@ -115,59 +74,61 @@ public class CharactersManager : MonoBehaviour {
     {
         return charactersDatas[index];
     }
-    public void ReturningPlayer(Joystick joystick, GameObject canvas)
-    {
-        if (starting) return;
 
-        joysticks.Add(joystick);
-        playerCanvas.Insert(0, canvas);
-        decreasePlayerCount();
+    public void CheckStartGame()
+    {
+        if (CheckAllPayersAreReady())
+        {
+            StartGame();
+        }
     }
 
-    void increasePlayerCount()
+    bool CheckAllPayersAreReady()
     {
-        playersCount++;
-
-    }
-    void decreasePlayerCount()
-    {
-        playersCount--;
-
-        StartGame();
-    }
-    public void increasePlayerReady(int index, Joystick joystick)
-    {
-        selecteds.Add(charactersDatas[index]);
-        joysticksSelecteds.Add(joystick);
-
-        playersReady++;
-
-        StartGame();
+        //Se há jogadores
+        if (charactersMenu.Where(x => x.joined).Any())
+            //Se há jogadores não prontos
+            if (charactersMenu.Where(x => x.joined).Where(y => !y.ready).Any())
+                return false;
+            else
+                return true;
+        else
+            return false;
     }
 
     private void StartGame()
     {
-        if (playersReady == playersCount && playersReady > 0)
+        starting = true;
+        //Percorrer a lista de jogadores buscando jogadores prontos e joysticks
+        foreach (var characterMenu in charactersMenu)
         {
-            starting = true;
-            //instructionsImage.sprite = startingSprite;
-            Invoke("CallNextScene", 1);
+            if (characterMenu.ready)
+            {
+                charactersSelecteds.Add(characterMenu.characterData);
+                joysticksSelecteds.Add(characterMenu.input.joysticks[0]);
+            }
         }
+
+        PlayersManager.Instance.Init(charactersSelecteds, joysticksSelecteds);
+
+        //instructionsImage.sprite = startingSprite;
+        Invoke("CallNextScene", 1);   
     }
 
-    public void decreasePlayerReady(int index)
-    {
-        if (starting) return;
-        joysticksSelecteds.RemoveAt(selecteds.IndexOf(charactersDatas[index]));
-        selecteds.Remove(charactersDatas[index]);
-
-        playersReady--;
-    }
-
+    
     void CallNextScene()
     {
         PlayMusic.Instance.PlayGameMusic();
-        PlayersManager.Instance.Init(selecteds, joysticksSelecteds);
         SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    internal bool IsCharacterSelected(CharacterData characterData)
+    {
+        foreach (var characterMenu in charactersMenu)
+            if (characterMenu.ready)
+                if (characterMenu.characterData == characterData)
+                    return true;
+
+        return false;
     }
 }

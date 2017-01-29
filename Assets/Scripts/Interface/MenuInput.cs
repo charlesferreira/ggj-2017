@@ -4,7 +4,16 @@ using System.Collections.Generic;
 
 public class MenuInput : MonoBehaviour {
 
-[Header("References")]
+    public bool Up { get; set; }
+    public bool Down { get; set; }
+    public bool Left { get; set; }
+    public bool Right { get; set; }
+    public bool Confirm { get; set; }
+    public bool Cancel { get; set; }
+    public bool Start { get; set; }
+
+    [Header("References")]
+
     public List<Joystick> joysticks;
 
     [Header("Tunning")]
@@ -21,7 +30,7 @@ public class MenuInput : MonoBehaviour {
 
     void Update() {
 
-        Up = Down = Left = Right = Confirm = Cancel = false;
+        Up = Down = Left = Right = Confirm = Cancel = Start = false;
 
         foreach (var joystick in joysticks)
         {
@@ -31,6 +40,7 @@ public class MenuInput : MonoBehaviour {
             if (Input.GetAxisRaw(joystick.Horizontal) < -cursorThreshold) Left = true;
             if (Input.GetButtonDown(joystick.AButton)) Confirm = true;
             if (Input.GetButtonDown(joystick.BButton)) Cancel = true;
+            if (Input.GetButtonDown(joystick.StartButton)) Start = true;
         }
 
         if (Up || Down || Right || Left)
@@ -51,11 +61,4 @@ public class MenuInput : MonoBehaviour {
         }
         currentCooldown = firstCooldown;
     }
-
-    public bool Up { get; set; }
-    public bool Down { get; set; }
-    public bool Left { get; set; }
-    public bool Right { get; set; }
-    public bool Confirm { get; set; }
-    public bool Cancel { get; set; }
 }
