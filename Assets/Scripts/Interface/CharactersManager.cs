@@ -10,7 +10,6 @@ public class CharactersManager : MonoBehaviour {
     public List<CharacterData> charactersDatas = new List<CharacterData>();
     public Sprite pressStartSprite;
     public Sprite confirmSprite;
-    public Sprite forbiddenSprite;
 
     [Header("Scene")]
     public int nextSceneIndex = 2;

@@ -6,8 +6,6 @@ public class CharacterMenu : MonoBehaviour {
 
     Image characterImage;
     Image confirmImage;
-    Image forbiddenImage;
-    bool forbidden = false;
     [HideInInspector] public bool joined = false;
     [HideInInspector] public bool ready = false;
     [HideInInspector] public MenuInput input;
@@ -25,11 +23,8 @@ public class CharacterMenu : MonoBehaviour {
         charactersCount = CharactersManager.Instance.charactersDatas.Count;
         characterImage = GetComponentsInChildren<Image>()[0];
         confirmImage = GetComponentsInChildren<Image>()[1];
-        forbiddenImage = GetComponentsInChildren<Image>()[2];
         confirmImage.sprite = CharactersManager.Instance.confirmSprite;
-        forbiddenImage.sprite = CharactersManager.Instance.forbiddenSprite;
         confirmImage.enabled = false;
-        forbiddenImage.enabled = false;
         characterImage.sprite = CharactersManager.Instance.pressStartSprite;
     }
 
@@ -38,7 +33,6 @@ public class CharacterMenu : MonoBehaviour {
         if (CharactersManager.Instance.starting)
         {
             enabled = false;
-            forbiddenImage.enabled = false;
             return;
         }
 
@@ -46,21 +40,30 @@ public class CharacterMenu : MonoBehaviour {
         {
             currentIndexCharacter = (currentIndexCharacter + 1) % charactersCount;
             UpdateCharacterData();
+            while (CharactersManager.Instance.IsCharacterSelected(characterData))
+            {
+                currentIndexCharacter = (currentIndexCharacter + 1) % charactersCount;
+                UpdateCharacterData();
+            }
         }
         else if ((input.Down || input.Left) && joined && !ready)
         {
             currentIndexCharacter = (charactersCount + currentIndexCharacter - 1) % charactersCount;
             UpdateCharacterData();
+            while (CharactersManager.Instance.IsCharacterSelected(characterData))
+            {
+                currentIndexCharacter = (charactersCount + currentIndexCharacter - 1) % charactersCount;
+                UpdateCharacterData();
+            }
         }
 
         if (!ready && joined)
         {
-            if (CharactersManager.Instance.IsCharacterSelected(characterData))
-                forbidden = true;
-            else
-                forbidden = false;
-
-            forbiddenImage.enabled = forbidden;
+            while (CharactersManager.Instance.IsCharacterSelected(characterData))
+            {
+                currentIndexCharacter = (currentIndexCharacter + 1) % charactersCount;
+                UpdateCharacterData();
+            }
         }
 
         if (input.Start && !joined)
@@ -82,7 +85,7 @@ public class CharacterMenu : MonoBehaviour {
                 CharactersManager.Instance.CheckStartGame();
             }
         }
-        else if (input.Confirm && joined && !forbidden && !ready)
+        else if (input.Confirm && joined && !ready)
         {
             confirmImage.enabled = true;
             ready = true;
